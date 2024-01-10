@@ -1,0 +1,25 @@
+<div>
+  <input [(ngModel)]="newTodo" placeholder="Add Todo" />
+  <button (click)="addTodo()">Add</button>
+</div>
+
+<div>
+  <h2>Todos</h2>
+  <ul>
+    <li *ngFor="let todo of activeTodos$ | async" [ngClass]="{ 'completed': todo.completed }">
+      {{ todo.text }}
+      <button (click)="removeTodo(todo.id)">Remove</button>
+      <button (click)="completeTodo(todo.id)">Complete</button>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Completed Todos</h2>
+  <ul>
+    <li *ngFor="let todo of completedTodos$ | async" class="completed">
+      {{ todo.text }}
+      <button (click)="removeTodo(todo.id)">Remove</button>
+    </li>
+  </ul>
+</div>
